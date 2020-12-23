@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "allowJs": true,
+        "target": "es5",
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
+        "module": "commonjs",
+        "outDir": "./lib",
+        "strict": true,
+        "declaration": true,
+        "typeRoots": [
+            "./node_modules/@types"
+        ],
+        "jsx": "react",
+        "allowSyntheticDefaultImports": true
+    },
+    "include": ["src"],
+    "exclude": [
+        "node_modules",
+        "lib",
+        "./**/__tests__/*"
+    ]
+}
