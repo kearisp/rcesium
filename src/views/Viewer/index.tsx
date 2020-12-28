@@ -61,9 +61,6 @@ class Viewer extends React.Component<Props, any> {
     ];
 
     viewer:Cesium.Viewer|null = null;
-    _clickHandler = (e:any) => {
-        console.log("Viewer._clickHandler", e);
-    };
 
     constructor(props:Props) {
         super(props);
@@ -94,19 +91,6 @@ class Viewer extends React.Component<Props, any> {
         } = this.state;
 
         this.viewer = createViewer(id, options);
-
-        if(this.viewer) {
-            this.viewer.screenSpaceEventHandler.setInputAction(
-                this._clickHandler,
-                Cesium.ScreenSpaceEventType.LEFT_CLICK
-            );
-
-            console.log(">_<_<_<_<_,");
-
-            this.setState({
-                created: true
-            });
-        }
     }
 
     update() {
