@@ -1,10 +1,22 @@
-import Viewer from "./views/Viewer";
+import {
+    Viewer,
+    Entity,
+    Camera,
+    CameraSetView,
+    CameraFlyTo,
+    CameraFlyHome,
+    ScreenSpaceEvent
+} from "./views";
+import * as Cesium from "cesium";
 
 
 export {
-    Viewer
-};
-
-export default {
-    Viewer
+    Cesium,
+    Viewer,
+    Entity,
+    Camera,
+    CameraSetView,
+    CameraFlyTo,
+    CameraFlyHome,
+    ScreenSpaceEvent
 };

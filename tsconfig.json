@@ -1,14 +1,14 @@
 {
     "compilerOptions": {
-        "baseUrl": "./src",
-        "allowJs": true,
-        "target": "es5",
+        "baseUrl": ".",
+        "rootDir": "./src",
+        "target": "ES2015",
         "lib": [
             "dom",
-            "dom.iterable",
             "esnext"
         ],
-        "module": "commonjs",
+        "module": "CommonJS",
+        "moduleResolution": "node",
         "outDir": "./lib",
         "strict": true,
         "declaration": true,
@@ -16,7 +16,11 @@
             "./node_modules/@types"
         ],
         "jsx": "react",
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "noImplicitReturns": true,
+        "pretty": true,
+        "sourceMap": true
     },
     "include": ["src"],
     "exclude": [
