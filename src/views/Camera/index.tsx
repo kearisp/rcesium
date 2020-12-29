@@ -42,13 +42,13 @@ class Camera extends React.Component<CProps, any> {
             created
         } = this.state;
 
-        if(context && !created) {
+        if(!created && context && context.camera) {
             if(onChange) {
-                context.scene.camera.changed.addEventListener(onChange, "camera");
+                context.camera.changed.addEventListener(onChange, "camera");
             }
 
             if(onMoveEnd) {
-                context.scene.camera.moveEnd.addEventListener(onMoveEnd, "camera");
+                context.camera.moveEnd.addEventListener(onMoveEnd, "camera");
             }
 
             this.setState({
@@ -64,14 +64,13 @@ class Camera extends React.Component<CProps, any> {
             onMoveEnd
         } = this.props;
 
-        // @ts-ignore
-        if(context && context.scene && context.scene._view) {
+        if(context && context.camera) {
             if(onChange) {
-                context.scene.camera.changed.removeEventListener(onChange, "camera");
+                context.camera.changed.removeEventListener(onChange, "camera");
             }
 
             if(onMoveEnd) {
-                context.scene.camera.moveEnd.removeEventListener(onMoveEnd, "camera");
+                context.camera.moveEnd.removeEventListener(onMoveEnd, "camera");
             }
         }
     }

@@ -1,20 +1,22 @@
 import {
     Viewer,
-    Entity,
+    Scene,
     Camera,
     CameraSetView,
     CameraFlyTo,
     CameraFlyHome,
-    ScreenSpaceEvent
+    ScreenSpaceEvent,
+    Entity
 } from "./views";
 
 
 export {
     Viewer,
-    Entity,
+    Scene,
     Camera,
     CameraSetView,
     CameraFlyTo,
     CameraFlyHome,
-    ScreenSpaceEvent
+    ScreenSpaceEvent,
+    Entity
 };

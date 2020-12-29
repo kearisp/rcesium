@@ -5,6 +5,7 @@ import * as Cesium from "cesium";
 export interface ContextType {
     viewer:Cesium.Viewer;
     scene:Cesium.Scene;
+    camera:Cesium.Camera|null;
     entities:Cesium.EntityCollection;
     screenSpaceEventHandler:Cesium.ScreenSpaceEventHandler;
 }

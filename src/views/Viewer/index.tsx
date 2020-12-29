@@ -10,6 +10,8 @@ import {
 
 import {Context} from "../../context";
 
+import Scene from "../Scene";
+
 
 interface Props extends Cesium.Viewer.ConstructorOptions {
     className?:string;
@@ -61,13 +63,32 @@ class Viewer extends React.Component<Props, any> {
     ];
 
     viewer:Cesium.Viewer|null = null;
+    _postUpdateHandler = () => this.onPostUpdate();
+
+    get scene():Cesium.Scene|null {
+        if(this.viewer) {
+            return this.viewer.scene;
+        }
+
+        return null;
+    }
+
+    get camera():Cesium.Camera|null {
+        // @ts-ignore
+        if(this.scene && this.scene._view && this.scene.camera) {
+            return this.scene.camera;
+        }
+
+        return null;
+    }
 
     constructor(props:Props) {
         super(props);
 
         this.state = {
             id: "viewer-id-" + (Viewer.COUNT++),
-            created: false
+            created: false,
+            rendered: false
         };
     }
 
@@ -91,6 +112,10 @@ class Viewer extends React.Component<Props, any> {
         } = this.state;
 
         this.viewer = createViewer(id, options);
+
+        if(this.scene) {
+            this.scene.postRender.addEventListener(this._postUpdateHandler, "viewer");
+        }
     }
 
     update() {
@@ -102,7 +127,21 @@ class Viewer extends React.Component<Props, any> {
             id
         } = this.state;
 
+        if(this.scene) {
+            this.scene.postUpdate.removeEventListener(this._postUpdateHandler, "viewer");
+        }
+
         destroyViewer(id);
+    }
+
+    onPostUpdate() {
+        this.setState({
+            rendered: true
+        });
+
+        if(this.scene) {
+            this.scene.postRender.removeEventListener(this._postUpdateHandler, "viewer");
+        }
     }
 
     render() {
@@ -122,6 +161,7 @@ class Viewer extends React.Component<Props, any> {
               value={viewer && !viewer.isDestroyed() ? {
                 viewer: viewer,
                 scene: viewer.scene,
+                camera: this.camera,
                 entities: viewer.dataSourceDisplay.defaultDataSource.entities,
                 screenSpaceEventHandler: viewer.screenSpaceEventHandler
               } : null}>

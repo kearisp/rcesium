@@ -5,6 +5,14 @@ const viewers:{
     [key:string]:Cesium.Viewer;
 } = {};
 
+export const wrapListener = (event:Cesium.Event, listener:(...params:any[]) => any, scope?:any) => {
+    event.addEventListener(listener, scope);
+
+    return () => {
+        event.removeEventListener(listener, scope);
+    };
+};
+
 export const getRestProps = (props:any, keys:string[]):any => {
     return Object.keys(props).reduce((rest:any, key:string) => {
         if(keys.includes(key)) {
