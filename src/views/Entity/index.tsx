@@ -11,9 +11,7 @@ import {
 } from "../../context";
 
 
-interface Props extends Cesium.Entity.ConstructorOptions {
-    onClick?:(e:any) => void;
-}
+interface Props extends Cesium.Entity.ConstructorOptions {}
 
 interface CProps extends Props, WithCesiumProps {}
 
@@ -51,27 +49,6 @@ class Entity extends React.Component<CProps, any> {
 
     entity:Cesium.Entity|null = null;
 
-    _clickHandler = (e:any) => {
-        const {
-            context
-        } = this.props;
-
-        if(context && this.entity) {
-            let picked = context.scene.pick(e.position);
-
-            if(picked) {
-                let entity = picked.id || picked.primitive.id;
-
-                if(entity instanceof Cesium.Entity) {
-                    if(entity.id === this.entity.id) {
-                        this.onClick(e);
-                    }
-                //     this.events.emit("click:" + id.id, id);
-                }
-            }
-        }
-    };
-
     constructor(props:CProps) {
         super(props);
 
@@ -104,8 +81,7 @@ class Entity extends React.Component<CProps, any> {
 
     create() {
         const {
-            context,
-            onClick
+            context
         } = this.props;
 
         const options = getRestProps(this.props, Entity.restProps);
@@ -118,13 +94,6 @@ class Entity extends React.Component<CProps, any> {
             this.entity = new Cesium.Entity(options);
 
             context.entities.add(this.entity);
-
-            if(onClick) {
-                context.screenSpaceEventHandler.setInputAction(
-                    this._clickHandler,
-                    Cesium.ScreenSpaceEventType.LEFT_CLICK
-                );
-            }
 
             this.setState({
                 created: true
@@ -145,33 +114,16 @@ class Entity extends React.Component<CProps, any> {
 
     destroy() {
         const {
-            context,
-            onClick
+            context
         } = this.props;
 
         if(context && this.entity) {
             context.entities.remove(this.entity);
-
-            if(onClick) {
-                // context.screenSpaceEventHandler.remo
-            }
-        }
-    }
-
-    onClick(e:any) {
-        const {
-            onClick
-        } = this.props;
-
-        if(onClick) {
-            onClick(e);
         }
     }
 
     render() {
-        return (
-            <div />
-        );
+        return null;
     }
 }
 

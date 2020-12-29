@@ -75,9 +75,7 @@ class ScreenSpaceEvent extends React.Component<CProps, any> {
     }
 
     render() {
-        return (
-            <div />
-        );
+        return null;
     }
 }
 

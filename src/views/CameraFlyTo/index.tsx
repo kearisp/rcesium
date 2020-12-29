@@ -47,10 +47,6 @@ class CameraFlyTo extends React.Component<CProps, any> {
         if(!created && context) {
             context.scene.camera.flyTo(options);
 
-            // if(once) {
-            //
-            // }
-
             this.setState({
                 created: true
             });
@@ -58,9 +54,7 @@ class CameraFlyTo extends React.Component<CProps, any> {
     }
 
     render() {
-        return (
-            <div />
-        );
+        return null;
     }
 }
 

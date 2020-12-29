@@ -7,11 +7,9 @@ import {
     CameraFlyHome,
     ScreenSpaceEvent
 } from "./views";
-import * as Cesium from "cesium";
 
 
 export {
-    Cesium,
     Viewer,
     Entity,
     Camera,
