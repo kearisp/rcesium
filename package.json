@@ -8,7 +8,6 @@
     "types": "./lib/index.d.ts",
     "scripts": {
         "prepare": "npm run build",
-        "prebuild": "npm install",
         "prewatch": "npm install",
         "build": "tsc -b",
         "watch": "tsc -b --watch"
