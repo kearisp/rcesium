@@ -59,6 +59,8 @@ class Scene extends React.Component<CProps, any> {
         if(context && context.scene) {
             context.scene.preUpdate.removeEventListener(this._preUpdateHandler, scope);
             context.scene.postUpdate.removeEventListener(this._postUpdateHandler, scope);
+            context.scene.preRender.removeEventListener(this._preRenderHandler, scope);
+            context.scene.postRender.removeEventListener(this._postRenderHandler, scope);
         }
     }
 
